@@ -1,0 +1,97 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="The standards and working experience you can expect from Synergy Edge Tech."><meta name="theme-color" content="#080909"><title>Client Experience | Synergy Edge Tech</title><link rel="stylesheet" href="styles.css"><script src="script.js" defer></script><style>.inner-page{max-width:1120px;margin:auto;padding:70px 24px 100px}.inner-page h1{font-size:clamp(2.7rem,7vw,5.5rem);line-height:1.02;max-width:850px}.inner-page h1 span,.accent{color:#d5ad68}.lead{max-width:740px;font-size:1.15rem;line-height:1.8;color:#b8aaa3}.page-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:18px;margin-top:38px}.page-card{border:1px solid #343434;padding:26px;border-radius:4px;background:#0b0d0e}.page-card h2,.page-card h3{margin-top:8px}.page-card p,.page-copy{color:#b8aaa3;line-height:1.8}.pill{display:inline-block;border:1px solid #6b5735;padding:7px 11px;border-radius:99px;font-size:.8rem;color:#e8d2a5}.button{display:inline-block;margin:12px 10px 0 0;padding:13px 18px;text-decoration:none;border:1px solid #d5ad68;color:#f8eee7}.button-primary{background:#d5ad68;color:#111}.quote-mark{font-size:38px;color:#d5ad68;line-height:1}.card-kicker{font-size:.75rem;letter-spacing:.12em;color:#d5ad68;text-transform:uppercase}@media(max-width:700px){.inner-page{padding:45px 20px 70px}}.feedback-page .lead{color:#d0c5bd}.feedback-grid{margin-top:42px}.feedback-card{padding:30px;background:linear-gradient(145deg,#111314,#0a0b0c);border-color:#3c3428;min-height:265px}.feedback-card h2{color:#f5eee7;line-height:1.2}.feedback-card .page-copy{color:#c9beb6}.feedback-cta{margin-top:24px;padding:30px;border:1px solid #5a482d;background:#101112}.feedback-cta h2{margin:10px 0;color:#f5eee7}.feedback-cta .page-copy{color:#c9beb6;max-width:650px}@media(max-width:700px){.feedback-card{padding:24px}.feedback-cta{padding:24px}}
+</style>
+<style>
+.testimonial-showcase .lead{margin-bottom:34px}
+.testimonial-slider{position:relative;max-width:820px;margin:34px auto 54px;padding:44px 48px 34px;border:1px solid #3b342a;border-radius:22px;background:linear-gradient(145deg,#171819,#0c0d0e);box-shadow:0 24px 60px rgba(0,0,0,.24);text-align:center;overflow:hidden}
+.testimonial-slide{display:none;min-height:390px;flex-direction:column;align-items:center;justify-content:center;animation:testimonialFade .28s ease}
+.testimonial-slide.is-active{display:flex}
+.testimonial-stars{font-size:27px;letter-spacing:5px;color:#d5ad68;margin-bottom:20px}
+.testimonial-quote-mark{font-family:Georgia,serif;color:#d5ad68;font-size:58px;line-height:.8}
+.testimonial-slide blockquote{margin:18px auto 32px;max-width:650px;color:#f4eee8;font-size:clamp(1.25rem,3.6vw,2rem);line-height:1.55;font-style:italic;font-weight:500}
+.testimonial-attribution{display:flex;flex-direction:column;gap:7px}
+.testimonial-attribution strong{font-family:Georgia,serif;font-size:1.35rem;color:#e7c27e}
+.testimonial-attribution span{color:#bdb4ad;font-size:1rem}
+.testimonial-controls{display:flex;align-items:center;justify-content:center;gap:28px;margin-top:24px}
+.testimonial-arrow{width:54px;height:54px;border-radius:50%;border:1px solid #655640;background:transparent;color:#f4eee8;font-size:28px;cursor:pointer}
+.testimonial-arrow:hover,.testimonial-arrow:focus-visible{background:#d5ad68;color:#111;outline:none}
+.testimonial-dots{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;max-width:190px}
+.testimonial-dot{width:10px;height:10px;flex:0 0 auto;border:0;border-radius:50%;background:#655e57;padding:0;cursor:pointer}
+.testimonial-dot.is-active{width:30px;border-radius:20px;background:#e7c27e}
+@keyframes testimonialFade{from{opacity:.35;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){.testimonial-slider{padding:30px 20px 26px;border-radius:18px;margin-top:26px}.testimonial-slide{min-height:400px}.testimonial-slide blockquote{line-height:1.55;margin-bottom:26px}.testimonial-attribution strong{font-size:1.2rem}.testimonial-controls{gap:18px}.testimonial-arrow{width:48px;height:48px}}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+ const slider=document.querySelector('.testimonial-slider');
+ const slides=[...document.querySelectorAll('.testimonial-slide')];
+ const dots=[...document.querySelectorAll('.testimonial-dot')];
+ if(!slider||!slides.length)return;
+ let current=0,startX=0;
+ function show(i){
+  current=(i+slides.length)%slides.length;
+  slides.forEach((el,n)=>{el.classList.toggle('is-active',n===current);el.setAttribute('aria-hidden',n===current?'false':'true');el.inert=n!==current});
+  dots.forEach((el,n)=>{el.classList.toggle('is-active',n===current);el.setAttribute('aria-pressed',n===current?'true':'false')});
+ }
+ slider.querySelectorAll('.testimonial-arrow').forEach(b=>b.addEventListener('click',()=>show(current+(b.dataset.direction==='next'?1:-1))));
+ dots.forEach((b,i)=>b.addEventListener('click',()=>show(i)));
+ slider.addEventListener('touchstart',e=>{startX=e.changedTouches[0].screenX},{passive:true});
+ slider.addEventListener('touchend',e=>{const dx=e.changedTouches[0].screenX-startX;if(Math.abs(dx)>45)show(current+(dx<0?1:-1))},{passive:true});
+ slider.addEventListener('keydown',e=>{if(e.key==='ArrowRight')show(current+1);if(e.key==='ArrowLeft')show(current-1)});
+ show(0);
+});
+</script>
+</head><body><div class="site-shell"><header class="site-header">
+<a class="brand" href="index.html" aria-label="Synergy Edge Tech home"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-name">SYNERGY EDGE<small>TECH</small></span></a>
+<button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span></button>
+<nav class="primary-nav" id="primary-nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="portfolio.html">Work</a><a href="process.html">Process</a><a href="pricing.html">Pricing</a><a href="contact.html">Contact</a><a class="nav-cta" href="booking.html"><span class="call-icon">↗</span> Book a quick call</a></nav></header>
+<main class="inner-page feedback-page testimonial-showcase">
+<div class="eyebrow">CLIENT TESTIMONIALS</div>
+<h1>Good work. <span>Words that matter.</span></h1>
+<p class="lead">Thoughtful design, clear communication, and a process built around each project.</p>
+<section class="testimonial-slider" aria-label="Client testimonial slider" aria-roledescription="carousel">
+  <article class="testimonial-slide is-active" aria-roledescription="slide" aria-label="1 of 6">
+    <div class="testimonial-stars" aria-hidden="true">★★★★★</div><div class="testimonial-quote-mark" aria-hidden="true">“</div>
+    <blockquote>Choosing Synergy Edge Tech for our website was a smart move. The result feels polished, communicates our value clearly, and gives visitors a much better first impression of the business.</blockquote>
+    <div class="testimonial-attribution"><strong>Website Design</strong><span>Business Website Project</span></div>
+  </article>
+  <article class="testimonial-slide" aria-roledescription="slide" aria-label="2 of 6">
+    <div class="testimonial-stars" aria-hidden="true">★★★★★</div><div class="testimonial-quote-mark" aria-hidden="true">“</div>
+    <blockquote>Working with Synergy Edge Tech on a landing page is a strong choice for a business that wants its message to stand out. The offer is clear, the design feels professional, and the next step is easy to find.</blockquote>
+    <div class="testimonial-attribution"><strong>Landing Page Design</strong><span>Campaign Page Project</span></div>
+  </article>
+  <article class="testimonial-slide" aria-roledescription="slide" aria-label="3 of 6">
+    <div class="testimonial-stars" aria-hidden="true">★★★★★</div><div class="testimonial-quote-mark" aria-hidden="true">“</div>
+    <blockquote>Synergy Edge Tech brings a thoughtful approach to brand identity. The logo, colours, and visuals work together to give the business a distinctive, consistent look across platforms.</blockquote>
+    <div class="testimonial-attribution"><strong>Logo & Brand Identity</strong><span>Branding Project</span></div>
+  </article>
+  <article class="testimonial-slide" aria-roledescription="slide" aria-label="4 of 6">
+    <div class="testimonial-stars" aria-hidden="true">★★★★★</div><div class="testimonial-quote-mark" aria-hidden="true">“</div>
+    <blockquote>For business flyers and promotional graphics, Synergy Edge Tech is a great option. The designs are sharp, the important details stand out, and the message is easy to understand at a glance.</blockquote>
+    <div class="testimonial-attribution"><strong>Graphic Design</strong><span>Marketing Materials Project</span></div>
+  </article>
+  <article class="testimonial-slide" aria-roledescription="slide" aria-label="5 of 6">
+    <div class="testimonial-stars" aria-hidden="true">★★★★★</div><div class="testimonial-quote-mark" aria-hidden="true">“</div>
+    <blockquote>Synergy Edge Tech turns design into a polished, responsive Webflow experience. The pages feel organised on both mobile and desktop, making the website easier to explore and more professional overall.</blockquote>
+    <div class="testimonial-attribution"><strong>Webflow Development</strong><span>Responsive Website Project</span></div>
+  </article>
+  <article class="testimonial-slide" aria-roledescription="slide" aria-label="6 of 6">
+    <div class="testimonial-stars" aria-hidden="true">★★★★★</div><div class="testimonial-quote-mark" aria-hidden="true">“</div>
+    <blockquote>If a business wants a more organised way to handle enquiries and follow-ups, Synergy Edge Tech is worth considering. The GoHighLevel workflows help bring routine tasks into a clearer, more manageable process.</blockquote>
+    <div class="testimonial-attribution"><strong>GoHighLevel Automation</strong><span>CRM & Workflow Project</span></div>
+  </article>
+  <div class="testimonial-controls">
+    <button class="testimonial-arrow" type="button" data-direction="prev" aria-label="Previous testimonial">←</button>
+    <div class="testimonial-dots" role="group" aria-label="Choose testimonial">
+      <button class="testimonial-dot is-active" aria-label="Show testimonial 1" aria-pressed="true" type="button"></button>
+      <button class="testimonial-dot" aria-label="Show testimonial 2" aria-pressed="false" type="button"></button>
+      <button class="testimonial-dot" aria-label="Show testimonial 3" aria-pressed="false" type="button"></button>
+      <button class="testimonial-dot" aria-label="Show testimonial 4" aria-pressed="false" type="button"></button>
+      <button class="testimonial-dot" aria-label="Show testimonial 5" aria-pressed="false" type="button"></button>
+      <button class="testimonial-dot" aria-label="Show testimonial 6" aria-pressed="false" type="button"></button>
+    </div>
+    <button class="testimonial-arrow" type="button" data-direction="next" aria-label="Next testimonial">→</button>
+  </div>
+</section>
+<section class="feedback-cta"><span class="card-kicker">SHARE YOUR EXPERIENCE</span><h2>Worked with Synergy Edge Tech?</h2><p class="page-copy">Share your feedback about the project and let us know whether we may feature it on this page.</p><a class="button button-primary" href="https://wa.me/2349132137299?text=Hi%20Synergy%20Edge%20Tech%2C%20I%27d%20like%20to%20share%20feedback%20about%20our%20project.%0AProject%3A%0AWhat%20went%20well%3A%0AWhat%20could%20be%20improved%3A%0AMay%20my%20feedback%20be%20featured%20on%20your%20website%3F%20Yes%2FNo" target="_blank" rel="noopener">Submit a testimonial ↗</a></section>
+</main>
+<footer class="section" style="border-top:1px solid #333"><p>SYNERGY EDGE TECH · Digital design, development & automation</p><p><a href="https://wa.me/2349132137299">WhatsApp ↗</a> · <a href="booking.html">Book a call</a> · <a href="pricing.html">View pricing</a></p><small>© Synergy Edge Tech. All rights reserved.</small></footer></div></body></html>
