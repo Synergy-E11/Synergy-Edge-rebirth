@@ -13,8 +13,8 @@
 <div class="app-shell">
 <header class="topbar"><a class="brand" href="#" aria-label="Synergy Edge Tech"><span class="brand-icon">S</span><span>SYNERGY EDGE <small>TECH / AI OPERATIONS</small></span></a><div class="top-actions"><span class="local-state"><i></i> LOCAL WORKSPACE</span><button class="button button-quiet" id="exportBtn">Export workspace</button></div></header>
 <main>
-<section class="intro"><div><p class="eyebrow">INTERNAL OPERATIONS / 001</p><h1>AI Command <em>Centre.</em></h1><p class="lede">One workspace to plan, delegate, review and deliver better digital work.</p></div><div class="intro-mark">SE<span>/</span>AI</div></section>
-<section class="stats" aria-label="Workspace summary"><article><span>AI DEPARTMENTS</span><strong>07</strong><small>Configured roles</small></article><article><span>ACTIVE TASKS</span><strong id="activeCount">00</strong><small>In this workspace</small></article><article><span>COMPLETED</span><strong id="doneCount">00</strong><small>Marked complete</small></article><article><span>CONNECTIONS</span><strong>00<span class="muted">/07</span></strong><small>Manual handoff mode</small></article></section>
+<section class="intro"><div><p class="eyebrow">INTERNAL OPERATIONS / 001</p><h1>AI Command <em>Centre.</em></h1><p class="lede">One workspace to plan, delegate, review and deliver better digital work.</p><p id="apiStatus" class="api-status" role="status">Checking backend…</p></div><div class="intro-mark">SE<span>/</span>AI</div></section>
+<section class="stats" aria-label="Workspace summary"><article><span>AI DEPARTMENTS</span><strong>07</strong><small>Configured roles</small></article><article><span>ACTIVE TASKS</span><strong id="activeCount">00</strong><small>In this workspace</small></article><article><span>COMPLETED</span><strong id="doneCount">00</strong><small>Marked complete</small></article><article><span>API KEYS SET</span><strong id="connectedCount">00<span class="muted">/07</span></strong><small id="connectionNote">Checking backend status</small></article></section>
 <section class="layout">
 <div class="main-column">
 <section class="panel task-panel"><div class="panel-heading"><div><p class="eyebrow">01 / TASK CONTROL</p><h2>Create a task</h2></div><span class="tag">WORKFLOW BUILDER</span></div>
@@ -24,8 +24,8 @@
 </div>
 <aside class="side-column">
 <section class="panel"><div class="panel-heading"><div><p class="eyebrow">03 / AI DEPARTMENTS</p><h2>Team directory</h2></div></div><div id="providerList" class="provider-list"></div></section>
-<section class="panel principles"><p class="eyebrow">04 / OPERATING RULES</p><h2>Controlled by you.</h2><ul><li>AI roles are recommendations, not autonomous agents.</li><li>Nothing is sent to an AI provider from this dashboard.</li><li>Never paste API keys, passwords or client secrets into task briefs.</li><li>Review generated code before merging or deploying.</li><li>Protect the existing website and approve changes before release.</li></ul></section>
-<section class="panel security"><p class="eyebrow">SECURITY STATUS</p><strong>Local-first prototype</strong><p>Tasks are stored in this browser only. Provider API connections are not configured.</p></section>
+<section class="panel principles"><p class="eyebrow">04 / OPERATING RULES</p><h2>Controlled by you.</h2><ul><li>AI roles are recommendations, not autonomous agents.</li><li>This dashboard currently reads API-key presence only; it does not send prompts to providers.</li><li>Never paste API keys, passwords or client secrets into task briefs.</li><li>Review generated code before merging or deploying.</li><li>Protect the existing website and approve changes before release.</li></ul></section>
+<section class="panel security"><p class="eyebrow">SECURITY STATUS</p><strong>Backend status connected</strong><p>Tasks remain stored in this browser. Provider execution and automated task storage are not enabled yet.</p></section>
 </aside>
 </section>
 </main>
