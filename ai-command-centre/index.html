@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0B0B0B">
+<meta name="description" content="Synergy Edge Tech AI Command Centre — coordinate research, planning, engineering and quality workflows.">
+<title>AI Command Centre | Synergy Edge Tech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"><script src="app.js" defer></script>
+</head>
+<body>
+<div class="app-shell">
+<header class="topbar"><a class="brand" href="#" aria-label="Synergy Edge Tech"><span class="brand-icon">S</span><span>SYNERGY EDGE <small>TECH / AI OPERATIONS</small></span></a><div class="top-actions"><span class="local-state"><i></i> LOCAL WORKSPACE</span><button class="button button-quiet" id="exportBtn">Export workspace</button></div></header>
+<main>
+<section class="intro"><div><p class="eyebrow">INTERNAL OPERATIONS / 001</p><h1>AI Command <em>Centre.</em></h1><p class="lede">One workspace to plan, delegate, review and deliver better digital work.</p></div><div class="intro-mark">SE<span>/</span>AI</div></section>
+<section class="stats" aria-label="Workspace summary"><article><span>AI DEPARTMENTS</span><strong>07</strong><small>Configured roles</small></article><article><span>ACTIVE TASKS</span><strong id="activeCount">00</strong><small>In this workspace</small></article><article><span>COMPLETED</span><strong id="doneCount">00</strong><small>Marked complete</small></article><article><span>CONNECTIONS</span><strong>00<span class="muted">/07</span></strong><small>Manual handoff mode</small></article></section>
+<section class="layout">
+<div class="main-column">
+<section class="panel task-panel"><div class="panel-heading"><div><p class="eyebrow">01 / TASK CONTROL</p><h2>Create a task</h2></div><span class="tag">WORKFLOW BUILDER</span></div>
+<form id="taskForm"><label for="taskTitle">Task objective</label><input id="taskTitle" required maxlength="140" placeholder="e.g. Research and plan a conversion-focused website redesign"><label for="taskDetail">Context and expected outcome</label><textarea id="taskDetail" rows="3" placeholder="Add project context, constraints, references and what a good result looks like."></textarea><div class="form-row"><div><label for="taskType">Workflow</label><select id="taskType"><option value="full">Full team workflow</option><option value="research">Research and strategy</option><option value="design">Design direction</option><option value="build">Engineering and code review</option><option value="operations">Operations and documentation</option></select></div><div><label for="priority">Priority</label><select id="priority"><option>Normal</option><option>High</option><option>Urgent</option></select></div></div><button class="button button-primary" type="submit">Create workflow <span>↗</span></button></form>
+<div class="task-list-head"><h3>Task queue</h3><button class="text-button" id="clearDone">Clear completed</button></div><div id="taskList" class="task-list"><div class="empty-state">No tasks yet. Create your first workflow above.</div></div></section>
+<section class="panel handoff-panel"><div class="panel-heading"><div><p class="eyebrow">02 / COLLABORATION</p><h2>Manual AI handoff</h2></div><span class="tag">COPY-READY BRIEFS</span></div><p class="muted-copy">Choose a department to generate a focused brief. Open that AI platform, paste the brief, then bring its result back into the task record.</p><div class="handoff-grid" id="handoffGrid"></div><textarea id="handoffOutput" class="handoff-output" rows="7" readonly placeholder="Select a department to generate its task brief."></textarea><div class="handoff-actions"><button class="button button-primary" id="copyBrief">Copy brief</button><span id="copyStatus" role="status"></span></div></section>
+</div>
+<aside class="side-column">
+<section class="panel"><div class="panel-heading"><div><p class="eyebrow">03 / AI DEPARTMENTS</p><h2>Team directory</h2></div></div><div id="providerList" class="provider-list"></div></section>
+<section class="panel principles"><p class="eyebrow">04 / OPERATING RULES</p><h2>Controlled by you.</h2><ul><li>AI roles are recommendations, not autonomous agents.</li><li>Nothing is sent to an AI provider from this dashboard.</li><li>Never paste API keys, passwords or client secrets into task briefs.</li><li>Review generated code before merging or deploying.</li><li>Protect the existing website and approve changes before release.</li></ul></section>
+<section class="panel security"><p class="eyebrow">SECURITY STATUS</p><strong>Local-first prototype</strong><p>Tasks are stored in this browser only. Provider API connections are not configured.</p></section>
+</aside>
+</section>
+</main>
+<footer>SYNERGY EDGE TECH <span>AI OPERATIONS / PRIVATE WORKSPACE</span></footer>
+</div>
+<dialog id="taskDialog"><form method="dialog" class="dialog-card"><button class="close-dialog" aria-label="Close">×</button><p class="eyebrow">TASK DETAILS</p><h2 id="dialogTitle"></h2><p id="dialogMeta" class="muted-copy"></p><label for="taskNotes">Working notes / AI response summary</label><textarea id="taskNotes" rows="6" placeholder="Paste or summarise the department's output here."></textarea><div class="dialog-actions"><button class="button button-quiet" value="cancel">Close</button><button class="button button-primary" id="saveNotes" value="save">Save notes</button></div></form></dialog>
+</body></html>
